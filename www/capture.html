@@ -1,0 +1,56 @@
+<html>
+
+<title>capture photo</title>
+
+    <script type="text/javascript" charset="utf-8" src="/cordova-2.5.0.js"></script>
+    <script type="text/javascript" charset="utf-8">
+ 
+	function dump_pic(data) {
+	    var viewport = document.getElementById('test_img');
+	    console.log(data);
+	    viewport.style.display = "";
+	    viewport.style.position = "absolute";
+	    viewport.style.top = "10px";
+	    viewport.style.left = "10px";
+	    document.getElementById("test_img").src = data;
+	}
+
+
+	function show_pic() {
+	    navigator.camera.getPicture(dump_pic, fail, {
+	        quality : 50
+	    });
+	}
+
+    
+	document.addEventListener("deviceready",onDeviceReady,false);
+
+	function onDeviceReady() {
+	        pictureSource=navigator.camera.PictureSourceType;
+	        destinationType=navigator.camera.DestinationType;
+	}
+
+     function fail(message) {
+      alert('Failed because: ' + message);
+    }
+
+
+</script>
+
+<body>	 
+ 
+<table border=1> 
+	<tr></tr><td>  </td><br><br>
+ 	
+	<tr></tr><td><img style="display:none;width:120px;height:120px " id="test_img" src="" />
+	
+	<tr></tr><td> 	     <input type="checkbox" name="type" value="image">Image   
+			     <input type="checkbox" name="type" value="video">Video </td>
+
+	<tr></tr><td><button onclick="show_pic()" >Capture</button></td>
+	
+</table>   
+ 
+</body>
+
+</html>
